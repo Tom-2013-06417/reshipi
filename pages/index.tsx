@@ -1,7 +1,35 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Footer from '../components/Footer/Footer'
+import Card, { CardProps } from '../components/index/Card'
 
 export default function Home() {
+  const cardData: CardProps[] = [
+    {
+      heading: "Documentation",
+      body: "Find in-depth information about Next.js features and API.",
+      link: "https://nextjs.org/docs",
+    },
+    {
+      heading: "Learn",
+      body: "Learn about Next.js in an interactive course with quizzes!",
+      link: "https://nextjs.org/learn",
+    },
+    {
+      heading: "Examples",
+      body: "Discover and deploy boilerplate example Next.js projects.",
+      link: "https://github.com/vercel/next.js/tree/master/examples",
+    },
+    {
+      heading: "Deploy",
+      body: "Instantly deploy your Next.js site to a public URL with Vercel.",
+      link: "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app",
+    },
+  ];
+
+  const cards = cardData.map(({ heading, body, link }) => (
+    <Card heading={heading} body={body} link={link} />
+  ));
+
   return (
     <>
       <Head>
@@ -12,64 +40,16 @@ export default function Home() {
 
       <main className="lg:container mx-auto px-4 mb-20">
         <h1 className="text-6xl my-8 text-center">
-          Welcome to <a href="https://nextjs.org" className="text-blue-600">Next.js!</a>
+          Welcome to{" "}
+          <a href="https://nextjs.org" className="text-blue-600">
+            Next.js!
+          </a>
         </h1>
 
-        <div className="flex flex-col">
-          <a href="https://nextjs.org/docs" className="rounded shadow-md p-4 mb-4">
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="rounded shadow-md p-4 mb-4">
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="rounded shadow-md p-4 mb-4"
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="rounded shadow-md p-4 mb-4"
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="rounded shadow-md p-4 mb-4"
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <div className="flex flex-col">{cards}</div>
       </main>
 
-      <footer className="flex flex-col justify-center items-center bottom-0 h-15 w-full bg-gray-200 p-4">
-        <div>
-          Powered by{' '}
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="h-4">
-              <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-            </span>
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </>
-  )
+  );
 }
