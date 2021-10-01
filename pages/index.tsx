@@ -27,7 +27,7 @@ export default function Home() {
   ];
 
   const cards = cardData.map(({ heading, body, link }) => (
-    <Card heading={heading} body={body} link={link} />
+    <Card key={heading} heading={heading} body={body} link={link} />
   ));
 
   return (
