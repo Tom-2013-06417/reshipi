@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Footer from '../components/Footer/Footer'
 import Card, { CardProps } from '../components/index/Card'
+import Link from 'next/link'
 
 export default function Home() {
   const cardData: CardProps[] = [
@@ -41,9 +42,9 @@ export default function Home() {
       <main className="lg:container mx-auto px-4 mb-20">
         <h1 className="text-6xl my-8 text-center">
           Welcome to{" "}
-          <a href="/" className="text-blue-600">
-            レシピ
-          </a>
+          <Link href="/" >
+            <a className="text-blue-600">レシピ</a>
+          </Link>
         </h1>
 
         <div className="flex flex-col">{cards}</div>
