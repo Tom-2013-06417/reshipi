@@ -1,7 +1,17 @@
-import Head from "next/head";
+export interface IngredientAmount {
+  value: number;
+  unit?: string;
+}
 
-export interface RecipeProps {
-  recipe: Recipe;
+export interface Ingredient {
+  id: number;
+  name: string;
+  amount: IngredientAmount;
+}
+
+export interface Step {
+  id: number;
+  value: string;
 }
 
 export interface Recipe {
@@ -12,26 +22,14 @@ export interface Recipe {
   steps: readonly Step[];
 }
 
-export interface Ingredient {
-  id: number;
-  name: string;
-  amount: IngredientAmount;
-}
-
-export interface IngredientAmount {
-  value: number;
-  unit?: string;
-}
-
-export interface Step {
-  id: number;
-  value: string;
+export interface RecipeProps {
+  recipe: Recipe;
 }
 
 export default function RecipeComponent(props: RecipeProps) {
   const { recipe } = props;
 
-  const ingredientsHtml = recipe.ingredients.map((ingredient) => (
+  const ingredientsHtml = recipe.ingredients.map(ingredient => (
     <div key={ingredient.id} className="flex items-center mb-1">
       <input type="checkbox" className="mr-3 w-4 h-4" />
       <span>
@@ -40,7 +38,11 @@ export default function RecipeComponent(props: RecipeProps) {
     </div>
   ));
 
-  const stepsHtml = recipe.steps.map((step) => <p key={step.id} className="mb-3">{step.value}</p>);
+  const stepsHtml = recipe.steps.map(step => (
+    <p key={step.id} className="mb-3">
+      {step.value}
+    </p>
+  ));
 
   return (
     <div>

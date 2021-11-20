@@ -1,3 +1,40 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "log",
+          "group",
+          "groupEnd"
+        ]
+      }
+    ]
+  }
 }

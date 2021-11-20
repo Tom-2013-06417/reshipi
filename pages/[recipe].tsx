@@ -1,7 +1,8 @@
-import Head from "next/head";
-import Footer from "../components/Footer/Footer";
-import RecipeComponent, { Recipe } from "../components/Recipe/Recipe";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import Head from 'next/head';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { Fragment } from 'react';
+import Footer from '../components/Footer/Footer';
+import RecipeComponent, { Recipe } from '../components/Recipe/Recipe';
 
 export interface RecipeArticle {
   body: string;
@@ -18,29 +19,32 @@ interface RecipePageProps {
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`http://localhost:3000/api/recipes`);
   const articles: RecipeArticle[] = await response.json();
-  const paths = articles.map((article) => ({
+  const paths = articles.map(article => ({
     params: { recipe: article.seoUrl },
   }));
 
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps<RecipePageProps> = async (context) => {
-  const response = await fetch(`http://localhost:3000/api/recipes?seoUrl=${context.params?.recipe}`);
-  const article: RecipeArticle = await response.json();
+export const getStaticProps: GetStaticProps<RecipePageProps> =
+  async context => {
+    const response = await fetch(
+      `http://localhost:3000/api/recipes?seoUrl=${context.params?.recipe}`,
+    );
+    const article: RecipeArticle = await response.json();
 
-  return { props: { article } };
-};
+    return { props: { article } };
+  };
 
 export default function RecipePage({
   article,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const app = {
-    title: "Reshipi",
+    title: 'Reshipi',
   };
 
   return (
-    <>
+    <Fragment>
       <Head>
         <title>
           {article.title} | {app.title}
@@ -60,6 +64,6 @@ export default function RecipePage({
       </main>
 
       <Footer />
-    </>
+    </Fragment>
   );
 }

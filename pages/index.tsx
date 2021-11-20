@@ -1,29 +1,29 @@
-import Head from 'next/head'
-import Footer from '../components/Footer/Footer'
-import Card, { CardProps } from '../components/index/Card'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
+import Footer from '../components/Footer/Footer';
+import Card, { CardProps } from '../components/index/Card';
 
 export default function Home() {
   const cardData: CardProps[] = [
     {
-      heading: "Documentation",
-      body: "Find in-depth information about Next.js features and API.",
-      link: "https://nextjs.org/docs",
+      heading: 'Documentation',
+      body: 'Find in-depth information about Next.js features and API.',
+      link: 'https://nextjs.org/docs',
     },
     {
-      heading: "Learn",
-      body: "Learn about Next.js in an interactive course with quizzes!",
-      link: "https://nextjs.org/learn",
+      heading: 'Learn',
+      body: 'Learn about Next.js in an interactive course with quizzes!',
+      link: 'https://nextjs.org/learn',
     },
     {
-      heading: "Examples",
-      body: "Discover and deploy boilerplate example Next.js projects.",
-      link: "https://github.com/vercel/next.js/tree/master/examples",
+      heading: 'Examples',
+      body: 'Discover and deploy boilerplate example Next.js projects.',
+      link: 'https://github.com/vercel/next.js/tree/master/examples',
     },
     {
-      heading: "Deploy",
-      body: "Instantly deploy your Next.js site to a public URL with Vercel.",
-      link: "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app",
+      heading: 'Deploy',
+      body: 'Instantly deploy your Next.js site to a public URL with Vercel.',
+      link: 'https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app',
     },
   ];
 
@@ -41,8 +41,8 @@ export default function Home() {
 
       <main className="lg:container mx-auto px-4 mb-20">
         <h1 className="text-6xl my-8 text-center">
-          Welcome to{" "}
-          <Link href="/" >
+          Welcome to{' '}
+          <Link href="/">
             <a className="text-blue-600">レシピ</a>
           </Link>
         </h1>
