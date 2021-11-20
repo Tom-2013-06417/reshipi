@@ -1,8 +1,9 @@
 module.exports = {
   client: {
+    includes: ['./pages/**/*.tsx', './pages/**/*.ts'],
     service: {
-      name: "reshipi",
-      localSchemaFile: "./graphql-schema.json",
+      name: 'reshipi',
+      url: 'http://localhost:4000/graphql',
     },
   },
 };

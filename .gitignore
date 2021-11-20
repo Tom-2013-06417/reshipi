@@ -14,7 +14,7 @@
 
 # production
 /build
-graphql-schema.json
+schema.json
 
 # misc
 .DS_Store

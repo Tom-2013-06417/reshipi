@@ -35,6 +35,7 @@
           "groupEnd"
         ]
       }
-    ]
+    ],
+    "no-underscore-dangle": "off"
   }
 }

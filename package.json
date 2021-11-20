@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "generate:schema": "apollo schema:download",
+    "generate:types": "yarn generate:schema && apollo client:codegen --no-addTypename --useReadOnlyTypes --target=typescript --tagName=gql",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
