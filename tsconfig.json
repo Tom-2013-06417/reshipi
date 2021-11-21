@@ -25,6 +25,6 @@
   ],
   "exclude": [
     "node_modules",
-    "./__generated__",
+    "__generated__",
   ]
 }

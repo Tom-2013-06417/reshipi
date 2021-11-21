@@ -21,7 +21,7 @@
       "ignorePackages",
       {
         "ts": "never",
-        "tsx": "never",
+        "tsx": "never"
       }
     ],
     "no-console": [
