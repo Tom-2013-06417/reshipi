@@ -1,6 +1,4 @@
-import { RecipeArticle } from '../../pages/[recipe]';
-
-export function mockRecipeArticles(): RecipeArticle[] {
+export function mockRecipeArticles() {
   return [
     {
       title: 'Filipino Gravy',
