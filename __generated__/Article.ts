@@ -15,14 +15,12 @@ export interface Article_article_recipe_ingredients_amount {
 
 export interface Article_article_recipe_ingredients {
   readonly __typename: "Ingredient";
-  readonly id: number | null;
-  readonly amount: Article_article_recipe_ingredients_amount;
+  readonly amount: Article_article_recipe_ingredients_amount | null;
   readonly name: string;
 }
 
 export interface Article_article_recipe_steps {
   readonly __typename: "RecipeSteps";
-  readonly id: number | null;
   readonly value: string;
 }
 

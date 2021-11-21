@@ -42,7 +42,6 @@ export const getStaticProps: GetStaticProps<Article> = async context => {
             title
             description
             ingredients {
-              id
               amount {
                 unit
                 value
@@ -50,7 +49,6 @@ export const getStaticProps: GetStaticProps<Article> = async context => {
               name
             }
             steps {
-              id
               value
             }
           }
