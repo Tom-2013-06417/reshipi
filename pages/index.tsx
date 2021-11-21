@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 import Footer from '../components/Footer/Footer';
 import Card from '../components/Home/Card';
 import client from '../apollo-client';
-import { Articles } from './__generated__/Articles';
+import { Articles } from '../__generated__/Articles';
 
 export const getStaticProps: GetStaticProps<Articles> = async () => {
   const { data } = await client.query({

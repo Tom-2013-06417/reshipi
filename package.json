@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "generate:schema": "apollo schema:download",
-    "generate:types": "yarn generate:schema && apollo client:codegen --no-addTypename --useReadOnlyTypes --target=typescript --tagName=gql",
+    "generate:types": "yarn generate:schema && apollo client:codegen --useReadOnlyTypes --target=typescript --tagName=gql --outputFlat",
     "lint": "next lint",
     "start": "next start"
   },

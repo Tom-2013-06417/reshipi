@@ -8,6 +8,7 @@
 // ====================================================
 
 export interface Articles_articles {
+  readonly __typename: "Article";
   readonly _id: string;
   readonly title: string;
   readonly seoDescription: string;
