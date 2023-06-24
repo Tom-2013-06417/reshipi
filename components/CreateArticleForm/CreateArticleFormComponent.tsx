@@ -1,4 +1,6 @@
 import CreateRecipeFormComponent from "../CreateRecipeForm/CreateRecipeFormComponent";
+import Input from "../UI/Input/Input";
+import Textarea from "../UI/Textarea/Textarea";
 
 export default function CreateArticleFormComponent() {
 //   const ingredientsHtml = recipe.ingredients.map((ingredient, index) => (
@@ -18,9 +20,15 @@ export default function CreateArticleFormComponent() {
 
   return (
     <div>
-      <h3>Form</h3>
-      <input type="text" placeholder="Title"></input>
-      <textarea placeholder="Description"></textarea>
+      <Input
+        label="Title"
+        placeholder="This is a new recipe"
+      ></Input>
+      <Textarea
+        label="Description"
+        placeholder="This is a new article"
+      ></Textarea>
+
       <CreateRecipeFormComponent />
     </div>
   );
