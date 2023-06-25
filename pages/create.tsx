@@ -1,8 +1,7 @@
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
 import { Fragment } from 'react';
 import Footer from '../components/Footer/Footer';
-import CreateArticleFormComponent from '../components/CreateArticleForm/CreateArticleFormComponent';
+import CreateRecipeFormComponent from '../components/CreateRecipeForm/CreateRecipeFormComponent';
 
 export default function RecipePage() {
   return (
@@ -14,10 +13,10 @@ export default function RecipePage() {
       </Head>
 
       <main className="lg:container mx-auto px-4 mb-20">
-        <h1 className="text-4xl my-8">Create</h1>
+        <h1 className="text-4xl mt-8 mb-4">Create</h1>
 
         <div className="flex flex-col">
-          <CreateArticleFormComponent />
+          <CreateRecipeFormComponent />
         </div>
       </main>
 
