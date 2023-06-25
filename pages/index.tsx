@@ -57,7 +57,7 @@ export default function Home({
       </Head>
 
       <main className="lg:container mx-auto px-4 mb-20">
-        <h1 className="text-6xl my-8 text-center">
+        <h1 className="text-6xl my-8 text-center font-thin">
           Welcome to{' '}
           <Link href="/">
             <a className="text-blue-600">Reshipi</a>

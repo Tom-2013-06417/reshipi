@@ -27,6 +27,7 @@ export default function CreateArticleFormComponent() {
       <Textarea
         label="Description"
         placeholder="This is a new article"
+        rows="6"
       ></Textarea>
 
       <CreateRecipeFormComponent />

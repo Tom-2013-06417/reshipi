@@ -84,7 +84,7 @@ export default function RecipePage({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="lg:container mx-auto px-4 mb-20">
+      <main className="lg:container mx-auto px-4 mb-20 font-thin">
         <h1 className="text-4xl my-8">{article.title}</h1>
 
         <div className="flex flex-col">
