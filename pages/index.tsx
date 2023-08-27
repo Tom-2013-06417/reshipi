@@ -35,7 +35,7 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const cards = articles?.map(article => {
     if (article === null) {
-      return <Fragment></Fragment>;
+      return <Fragment key={0}></Fragment>;
     }
 
     return (
