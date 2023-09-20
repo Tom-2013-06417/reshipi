@@ -3,7 +3,7 @@ module.exports = {
     includes: ['./pages/**/*.tsx', './pages/**/*.ts'],
     service: {
       name: 'reshipi',
-      url: 'http://localhost:4000/graphql',
+      url: 'http://localhost:4000/api/graphql',
     },
   },
 };

@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "generate:schema": "apollo schema:download",
-    "generate:types": "yarn generate:schema && apollo client:codegen --useReadOnlyTypes --target=typescript --tagName=gql --outputFlat",
     "lint": "next lint",
     "start": "NODE_ENV=production start",
     "start:dev": "next dev"
@@ -14,11 +13,13 @@
     "@apollo/client": "^3.4.16",
     "graphql": "^15.6.1",
     "next": "12",
+    "qs": "^6.11.2",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.5.6",
+    "@types/qs": "^6.9.8",
     "@types/react": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",

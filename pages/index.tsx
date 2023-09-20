@@ -1,31 +1,20 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { gql } from '@apollo/client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
 import Footer from '../components/Footer/Footer';
 import Card from '../components/Home/Card';
-import client from '../apollo-client';
-import { Articles } from '../__generated__/Articles';
+import { Article } from '../generated/payload-types';
 
-export const getStaticProps: GetStaticProps<Articles> = async () => {
-  const { data } = await client.query({
-    query: gql`
-      query Articles {
-        articles {
-          _id
-          title
-          seoDescription
-          seoUrl
-          body
-        }
-      }
-    `,
-  });
+export const getStaticProps: GetStaticProps<{
+  articles: Article[];
+}> = async () => {
+  const response = await fetch('http://localhost:4000/api/articles');
+  const articles = await response.json();
 
   return {
     props: {
-      articles: data.articles,
+      articles: articles.docs,
     },
   };
 };
@@ -40,10 +29,10 @@ export default function Home({
 
     return (
       <Card
-        key={article._id}
+        key={article.id}
         heading={article.title}
-        body={article.body}
-        link={article.seoUrl}
+        body={''}
+        link={article.seo_url}
       />
     );
   });
@@ -56,11 +45,10 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="lg:container mx-auto px-4 mb-20">
+      <main className="lg:container mx-auto px-4 h-screen">
         <h1 className="text-6xl my-8 text-center font-thin">
-          Welcome to{' '}
           <Link href="/">
-            <a className="text-blue-600">Reshipi</a>
+            <a className="text-blue-600">reshipi</a>
           </Link>
         </h1>
 
