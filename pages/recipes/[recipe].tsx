@@ -8,7 +8,7 @@ import { Recipe } from '../../generated/payload-types';
 import { CMS_API } from '../../config';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`'${CMS_API}/recipes'`);
+  const response = await fetch(`${CMS_API}/recipes`);
   const recipes = await response.json();
   const paths: string[] = recipes.docs.map(
     (recipe: Recipe) => `/recipes/${recipe.seo_url}`,
