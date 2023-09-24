@@ -5,11 +5,12 @@ import { Fragment } from 'react';
 import Footer from '../components/Footer/Footer';
 import Card from '../components/Home/Card';
 import { Article } from '../generated/payload-types';
+import { CMS_API } from '../config';
 
 export const getStaticProps: GetStaticProps<{
   articles: Article[];
 }> = async () => {
-  const response = await fetch('http://localhost:4000/api/articles');
+  const response = await fetch(`${CMS_API}/articles`);
   const articles = await response.json();
 
   return {

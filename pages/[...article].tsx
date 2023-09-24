@@ -5,9 +5,10 @@ import qs from 'qs';
 import Footer from '../components/Footer/Footer';
 import RecipeComponent from '../components/Recipe/Recipe';
 import { Article } from '../generated/payload-types';
+import { CMS_API } from '../config';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch('http://localhost:4000/api/articles');
+  const response = await fetch(`${CMS_API}/articles`);
   const articles = await response.json();
   const paths: string[] = articles.docs.map(
     (article: Article) => article.seo_url,
@@ -35,9 +36,7 @@ export const getStaticProps: GetStaticProps<{
     { addQueryPrefix: true },
   );
 
-  const response = await fetch(
-    `http://localhost:4000/api/articles${stringifiedQuery}`,
-  );
+  const response = await fetch(`${CMS_API}/articles${stringifiedQuery}`);
   const [article] = (await response.json()).docs;
 
   return { props: { article } };
