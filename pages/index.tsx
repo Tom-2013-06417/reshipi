@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
 import Footer from '../components/Footer/Footer';
-import Card from '../components/Home/Card';
+import Card from '../components/Card/Card';
 import { Article } from '../generated/payload-types';
 import { CMS_API } from '../config';
 
