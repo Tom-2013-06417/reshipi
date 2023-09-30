@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import RecipeComponent from '../components/Recipe/Recipe';
 import { Article } from '../generated/payload-types';
 import { CMS_API } from '../config';
+import { RichText } from '../components/RichText/RichText';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${CMS_API}/articles`);
@@ -62,11 +63,11 @@ export default function ArticlePage({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="lg:container mx-auto px-4 mb-20 font-thin">
+      <main className="container max-w-screen-md mx-auto px-4 font-thin min-h-screen">
         <h1 className="text-4xl my-8">{article.title}</h1>
 
         <div className="flex flex-col">
-          {/* <div className="mb-5">{article.content}</div> */}
+          <RichText content={article.content} />
 
           <RecipeComponent recipe={article.recipe} />
         </div>

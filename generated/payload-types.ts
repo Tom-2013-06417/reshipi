@@ -8,16 +8,22 @@
 
 export interface Config {
   collections: {
-    ingredients: Ingredient;
-    recipes: Recipe;
     articles: Article;
+    ingredients: Ingredient;
+    media: Media;
+    recipes: Recipe;
     users: User;
   };
   globals: {};
 }
-export interface Ingredient {
+export interface Article {
   id: string;
-  name: string;
+  title: string;
+  seo_url: string;
+  content: {
+    [k: string]: unknown;
+  }[];
+  recipe?: string | Recipe;
   updatedAt: string;
   createdAt: string;
 }
@@ -52,14 +58,39 @@ export interface User {
   lockUntil?: string;
   password?: string;
 }
-export interface Article {
+export interface Ingredient {
   id: string;
-  title: string;
-  seo_url: string;
-  content: {
-    [k: string]: unknown;
-  }[];
-  recipe?: string | Recipe;
+  name: string;
   updatedAt: string;
   createdAt: string;
+}
+export interface Media {
+  id: string;
+  alt?: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
+  sizes?: {
+    square?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    sixteenByNineMedium?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+  };
 }
