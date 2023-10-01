@@ -15,14 +15,16 @@ export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
   }
 
   const ingredientsHtml = recipe.ingredients ? (
-    recipe?.ingredients.map(ingredient => {
+    recipe?.ingredients.map((ingredient, i) => {
       const x = ingredient.ingredient;
 
       if (x !== undefined && typeof x !== 'string') {
         const ingredientName = x.name;
-        <div className="mb-5">
-          {ingredient.amount} {ingredient.unit} {ingredientName}
-        </div>;
+        return (
+          <div key={i} className="mb-5">
+            {ingredient.amount} {ingredient.unit} {ingredientName}
+          </div>
+        );
       }
 
       return undefined;
@@ -39,7 +41,7 @@ export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
 
   return (
     <div>
-      <h3>{recipe.title}</h3>
+      <h2 className="text-4xl mb-8">{recipe.title}</h2>
       <div className="mb-3">{ingredientsHtml}</div>
       <div>{stepsHtml}</div>
     </div>

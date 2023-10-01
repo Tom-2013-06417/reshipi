@@ -70,7 +70,9 @@ export default function ArticlePage({
         <h1 className="my-8">{article.title}</h1>
 
         <div className="flex flex-col">
-          <RichText content={article.content as Node[]} />
+          <div className="mb-20">
+            <RichText content={article.content as Node[]} />
+          </div>
 
           <RecipeComponent recipe={article.recipe} />
         </div>

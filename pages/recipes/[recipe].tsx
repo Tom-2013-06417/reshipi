@@ -61,8 +61,8 @@ export default function RecipePage({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="lg:container mx-auto px-4 mb-20 font-thin">
-        <h1 className="text-4xl my-8">{recipe.title}</h1>
+      <main className="container max-w-screen-md mx-auto px-4 min-h-screen">
+        <div className="min-h-[45vh]"></div>
 
         <div className="flex flex-col">
           <RecipeComponent recipe={recipe} />

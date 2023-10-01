@@ -49,9 +49,10 @@ export default function Home({
       </Head>
 
       <main className="container max-w-screen-md mx-auto px-4 min-h-screen">
-        <h1 className="text-6xl my-8 text-center font-thin">
-          <Link href="/">
-            <a className="text-blue-600">reshipi</a>
+        <div className="min-h-[45vh]"></div>
+        <h1 className="text-6xl mb-20 text-center font-light">
+          <Link className="font-sans" href="/">
+            reshipi
           </Link>
         </h1>
 
