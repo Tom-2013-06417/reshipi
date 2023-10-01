@@ -1,7 +1,11 @@
 import { Fragment } from 'react';
 import { Recipe } from '../../generated/payload-types';
 
-export default function RecipeComponent({ recipe }: { recipe: Recipe }) {
+interface Props {
+  recipe: Recipe;
+}
+
+export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
   if (!recipe.ingredients) {
     return <></>;
   }
@@ -40,4 +44,4 @@ export default function RecipeComponent({ recipe }: { recipe: Recipe }) {
       <div>{stepsHtml}</div>
     </div>
   );
-}
+};

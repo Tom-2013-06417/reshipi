@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
-interface TextareaProps {
+interface Props {
   label: string;
   [key: string]: unknown;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ label, ...rest }) => {
+export const Textarea: React.FC<Props> = ({ label, ...rest }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const adjustTextareaHeight = () => {
@@ -25,9 +25,7 @@ const Textarea: React.FC<TextareaProps> = ({ label, ...rest }) => {
 
   return (
     <div className="mb-4">
-      <label
-        className="block text-gray-700 text-sm font-bold mb-2"
-      >
+      <label className="block text-gray-700 text-sm font-bold mb-2">
         {label}
       </label>
       <textarea
@@ -36,8 +34,6 @@ const Textarea: React.FC<TextareaProps> = ({ label, ...rest }) => {
         onChange={handleTextareaChange}
         {...rest}
       />
-  </div>
-  )
+    </div>
+  );
 };
-
-export default Textarea;

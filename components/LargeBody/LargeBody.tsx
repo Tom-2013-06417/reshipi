@@ -1,5 +1,5 @@
-export const LargeBody: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => <p>{children}</p>;
+interface Props {
+  children: React.ReactNode;
+}
 
-export default LargeBody;
+export const LargeBody: React.FC<Props> = ({ children }) => <p>{children}</p>;

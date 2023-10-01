@@ -1,19 +1,17 @@
 const BODY_TRUNCATE_LIMIT = 50;
 
-export interface CardProps {
+interface Props {
   heading: string;
   body: string;
   link: string;
 }
 
-export default function Card(props: CardProps) {
-  return (
-    <a
-      href={props.link}
-      className="text-lg rounded-md shadow-md p-4 mb-4 font-light min-h-[150px]"
-    >
-      {props.heading}
-      <p>{props.body.slice(0, BODY_TRUNCATE_LIMIT)}</p>
-    </a>
-  );
-}
+export const Card: React.FC<Props> = ({ heading, body, link }) => (
+  <a
+    href={link}
+    className="text-lg rounded-md shadow-md p-4 mb-4 font-light min-h-[150px]"
+  >
+    {heading}
+    <p>{body.slice(0, BODY_TRUNCATE_LIMIT)}</p>
+  </a>
+);

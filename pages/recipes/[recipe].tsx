@@ -2,10 +2,14 @@ import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
 import qs from 'qs';
-import Footer from '../../components/Footer/Footer';
-import RecipeComponent from '../../components/Recipe/Recipe';
+import { Footer } from '../../components/Footer/Footer';
+import { RecipeComponent } from '../../components/Recipe/Recipe';
 import { Recipe } from '../../generated/payload-types';
 import { CMS_API } from '../../config';
+
+interface Props {
+  recipe: Recipe;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${CMS_API}/recipes`);
@@ -17,9 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps<{
-  recipe: Recipe;
-}> = async context => {
+export const getStaticProps: GetStaticProps<Props> = async context => {
   const query = {
     seo_url: {
       equals: context.params?.recipe,
