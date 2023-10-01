@@ -1,15 +1,19 @@
-import { CustomRenderers, Serialize } from './Serialize';
+import { Serialize } from './Serialize';
+import { Node } from './types';
 
-export const RichText: React.FC<{
+interface Props {
+  content: Node[];
   className?: string;
-  content: any;
-  customRenderers?: CustomRenderers;
-}> = ({ content, customRenderers }) => {
+}
+
+export const RichText: React.FC<Props> = ({ content, className }) => {
   if (!content) {
-    return null;
+    return <></>;
   }
 
-  return <Serialize content={content} customRenderers={customRenderers} />;
+  return (
+    <div className={className}>
+      <Serialize content={content} />
+    </div>
+  );
 };
-
-export default RichText;

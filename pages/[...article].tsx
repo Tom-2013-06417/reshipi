@@ -2,11 +2,16 @@ import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
 import qs from 'qs';
-import Footer from '../components/Footer/Footer';
-import RecipeComponent from '../components/Recipe/Recipe';
+import { Footer } from '../components/Footer/Footer';
+import { RecipeComponent } from '../components/Recipe/Recipe';
 import { Article } from '../generated/payload-types';
 import { CMS_API } from '../config';
 import { RichText } from '../components/RichText/RichText';
+import { Node } from '../components/RichText/types';
+
+interface Props {
+  article: Article;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${CMS_API}/articles`);
@@ -18,9 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps<{
-  article: Article;
-}> = async context => {
+export const getStaticProps: GetStaticProps<Props> = async context => {
   const query = {
     seo_url: {
       equals: `/${
@@ -64,10 +67,10 @@ export default function ArticlePage({
       </Head>
 
       <main className="container max-w-screen-md mx-auto px-4 font-thin min-h-screen">
-        <h1 className="text-4xl my-8">{article.title}</h1>
+        <h1 className="my-8">{article.title}</h1>
 
         <div className="flex flex-col">
-          <RichText content={article.content} />
+          <RichText content={article.content as Node[]} />
 
           <RecipeComponent recipe={article.recipe} />
         </div>

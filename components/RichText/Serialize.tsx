@@ -1,48 +1,27 @@
 import { Fragment } from 'react';
 import escapeHTML from 'escape-html';
+import { Text } from 'slate';
 import { LargeBody } from '../LargeBody/LargeBody';
+import { Node } from './types';
 
-type Node = {
-  type: string;
-  value?: {
-    url: string;
-    alt: string;
-  };
-  children?: Node[];
-  url?: string;
-  [key: string]: unknown;
-  newTab?: boolean;
-};
-
-export type CustomRenderers = {
-  [key: string]: (args: {
-    node: Node;
-    Serialize: SerializeFunction; // eslint-disable-line
-    index: number | string;
-  }) => JSX.Element;
-};
-
-type SerializeFunction = React.FC<{
+interface Props {
   content?: Node[];
-  customRenderers?: CustomRenderers;
-}>;
+}
 
-const isText = (value: unknown): boolean =>
-  typeof value === 'object' &&
-  value !== null &&
-  'text' in value &&
-  typeof value?.text === 'string';
-
-export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
+export const Serialize: React.FC<Props> = ({ content }) => (
   <>
     {content?.map((node, i) => {
-      if (isText(node)) {
+      if (!node) {
+        return null;
+      }
+
+      if (Text.isText(node)) {
         let text = (
           <span
             dangerouslySetInnerHTML={{
-              __html: escapeHTML(node.text as string),
+              __html: escapeHTML(node.text),
             }}
-          />
+          ></span>
         );
 
         if (node.bold) {
@@ -67,7 +46,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
 
         if (node.strikethrough) {
           text = (
-            <span style={{ textDecoration: 'line-through' }} key={i}>
+            <span className="line-through" key={i}>
               {text}
             </span>
           );
@@ -76,119 +55,84 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
         return <Fragment key={i}>{text}</Fragment>;
       }
 
-      if (!node) {
-        return null;
-      }
-
-      if (
-        customRenderers &&
-        customRenderers[node.type] &&
-        typeof customRenderers[node.type] === 'function'
-      ) {
-        return customRenderers[node.type]({ node, Serialize, index: i });
-      }
-
       switch (node.type) {
         case 'br':
           return <br key={i} />;
+
         case 'h1':
           return (
-            <h1 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h1 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h1>
           );
+
         case 'h2':
           return (
-            <h2 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h2 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h2>
           );
+
         case 'h3':
           return (
-            <h3 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h3 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h3>
           );
+
         case 'h4':
           return (
-            <h4 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h4 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h4>
           );
+
         case 'h5':
           return (
-            <h5 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h5 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h5>
           );
+
         case 'h6':
           return (
-            <h6 key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <h6 className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </h6>
           );
+
         case 'quote':
           return (
             <blockquote key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+              <Serialize content={node.children} />
             </blockquote>
           );
+
         case 'ul':
           return (
             <ul key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+              <Serialize content={node.children} />
             </ul>
           );
+
         case 'ol':
           return (
             <ol key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+              <Serialize content={node.children} />
             </ol>
           );
+
         case 'li':
           return (
             <li key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+              <Serialize content={node.children} />
             </li>
           );
 
         case 'large-body': {
           return (
             <LargeBody key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+              <Serialize content={node.children} />
             </LargeBody>
           );
         }
@@ -204,7 +148,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
         //     >
         //       <Serialize
         //         content={node.children}
-        //         customRenderers={customRenderers}
+        //
         //       />
         //     </CMSLink>
         //   );
@@ -218,7 +162,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
         //     <Label key={i}>
         //       <Serialize
         //         content={node.children}
-        //         customRenderers={customRenderers}
+        //
         //       />
         //     </Label>
         //   );
@@ -235,11 +179,8 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => (
 
         default:
           return (
-            <p key={i}>
-              <Serialize
-                content={node.children}
-                customRenderers={customRenderers}
-              />
+            <p className="mb-4" key={i}>
+              <Serialize content={node.children} />
             </p>
           );
       }
