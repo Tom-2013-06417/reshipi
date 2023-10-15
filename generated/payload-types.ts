@@ -20,6 +20,7 @@ export interface Article {
   id: string;
   title: string;
   seo_url: string;
+  author: string | User;
   content: {
     [k: string]: unknown;
   }[];
@@ -27,26 +28,10 @@ export interface Article {
   updatedAt: string;
   createdAt: string;
 }
-export interface Recipe {
-  id: string;
-  title: string;
-  seo_url?: string;
-  author: string | User;
-  ingredients?: {
-    ingredient?: string | Ingredient;
-    amount?: number;
-    unit?: string;
-    id?: string;
-  }[];
-  steps?: {
-    step?: string;
-    id?: string;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
 export interface User {
   id: string;
+  firstName: string;
+  lastName: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -57,6 +42,23 @@ export interface User {
   loginAttempts?: number;
   lockUntil?: string;
   password?: string;
+}
+export interface Recipe {
+  id: string;
+  title: string;
+  seo_url?: string;
+  ingredients: {
+    ingredient: string | Ingredient;
+    amount?: number;
+    unit?: string;
+    id?: string;
+  }[];
+  steps?: {
+    step?: string;
+    id?: string;
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Ingredient {
   id: string;

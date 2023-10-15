@@ -14,7 +14,7 @@
   }
 
   h1 {
-    @apply text-4xl font-sans font-bold;
+    @apply text-6xl font-sans font-bold;
   }
   h2 {
     @apply text-3xl font-sans font-bold;

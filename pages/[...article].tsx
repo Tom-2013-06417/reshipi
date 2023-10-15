@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import qs from 'qs';
 import { Footer } from '../components/Footer/Footer';
 import { RecipeComponent } from '../components/Recipe/Recipe';
-import { Article } from '../generated/payload-types';
+import { Article, Ingredient, User } from '../generated/payload-types';
 import { CMS_API } from '../config';
 import { RichText } from '../components/RichText/RichText';
 import { Node } from '../components/RichText/types';
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async context => {
-  const query = {
+  const articleQuery = {
     seo_url: {
       equals: `/${
         Array.isArray(context.params?.article)
@@ -33,17 +33,54 @@ export const getStaticProps: GetStaticProps<Props> = async context => {
       }`,
     },
   };
+
   const stringifiedQuery = qs.stringify(
     {
-      where: query,
+      where: articleQuery,
     },
     { addQueryPrefix: true },
   );
 
-  const response = await fetch(`${CMS_API}/articles${stringifiedQuery}`);
-  const [article] = (await response.json()).docs;
+  const articleResponse = await fetch(`${CMS_API}/articles${stringifiedQuery}`);
+  const [article]: [Article] = (await articleResponse.json()).docs;
 
-  return { props: { article } };
+  const ingredientsLimit = 100;
+  const ingredientsQueryParams = `?limit=${ingredientsLimit}`;
+  const ingredientsResponse = await fetch(
+    `${CMS_API}/ingredients${ingredientsQueryParams}`,
+  );
+  const ingredients: Ingredient[] = (await ingredientsResponse.json()).docs;
+
+  const ingredientsMap: { [ingredientHash: string]: string } =
+    ingredients.reduce(
+      (result, ingredient) => ({ ...result, [ingredient.id]: ingredient.name }),
+      {},
+    );
+
+  // For now, we need to populate the values of the article's ingredients with
+  // the ingredient names from the ingredients endpoint because
+  // setting a depth on the articles API doesn't work natively yet to populate
+  // array-type nested relationships
+  const enrichedRecipe =
+    article.recipe && typeof article.recipe !== 'string'
+      ? {
+          ...article.recipe,
+          ingredients: article.recipe.ingredients.map(ingredientObject => ({
+            ...ingredientObject,
+            ingredient:
+              typeof ingredientObject.ingredient === 'string'
+                ? ingredientsMap[ingredientObject.ingredient]
+                : ingredientObject.ingredient,
+          })),
+        }
+      : undefined;
+
+  const enrichedArticle = {
+    ...article,
+    recipe: enrichedRecipe,
+  };
+
+  return { props: { article: enrichedArticle } };
 };
 
 export default function ArticlePage({
@@ -57,6 +94,17 @@ export default function ArticlePage({
     return <h1>404 not found</h1>;
   }
 
+  const isUser = (user: string | User): user is User =>
+    typeof user !== 'string';
+
+  const author = isUser(article.author) ? (
+    <div className="mb-4 text-lg font-normal leading-8">
+      {article.author.firstName} {article.author.lastName}
+    </div>
+  ) : (
+    <></>
+  );
+
   return (
     <Fragment>
       <Head>
@@ -67,14 +115,16 @@ export default function ArticlePage({
       </Head>
 
       <main className="container max-w-screen-md mx-auto px-4 font-thin min-h-screen">
-        <h1 className="my-8">{article.title}</h1>
+        <div className="min-h-[45vh]"></div>
+        <h1 className="my-4">{article.title}</h1>
+        {author}
 
         <div className="flex flex-col">
           <div className="mb-20">
             <RichText content={article.content as Node[]} />
           </div>
 
-          <RecipeComponent recipe={article.recipe} />
+          <RecipeComponent className="mb-20" recipe={article.recipe} />
         </div>
       </main>
 

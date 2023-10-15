@@ -3,9 +3,10 @@ import { Recipe } from '../../generated/payload-types';
 
 interface Props {
   recipe: Recipe;
+  className?: string;
 }
 
-export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
+export const RecipeComponent: React.FC<Props> = ({ recipe, className }) => {
   if (!recipe.ingredients) {
     return <></>;
   }
@@ -21,7 +22,11 @@ export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
       if (x !== undefined && typeof x !== 'string') {
         const ingredientName = x.name;
         return (
-          <div key={i} className="mb-5">
+          <div
+            key={i}
+            className="flex items-center mb-3 text-lg font-normal leading-8"
+          >
+            <input className="mr-3 w-4 h-4" type="checkbox" />
             {ingredient.amount} {ingredient.unit} {ingredientName}
           </div>
         );
@@ -40,9 +45,10 @@ export const RecipeComponent: React.FC<Props> = ({ recipe }) => {
   ));
 
   return (
-    <div>
-      <h2 className="text-4xl mb-8">{recipe.title}</h2>
-      <div className="mb-3">{ingredientsHtml}</div>
+    <div className={className}>
+      <h2 className="text-4xl mb-4">{recipe.title}</h2>
+      <div className="mb-8">{ingredientsHtml}</div>
+      <hr className="mb-8" />
       <div>{stepsHtml}</div>
     </div>
   );
