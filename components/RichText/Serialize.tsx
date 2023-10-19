@@ -3,6 +3,7 @@ import escapeHTML from 'escape-html';
 import { Text } from 'slate';
 import { LargeBody } from '../LargeBody/LargeBody';
 import { Node } from './types';
+import { RichTextUpload } from './RichTextUpload';
 
 interface Props {
   content?: Node[];
@@ -153,9 +154,9 @@ export const Serialize: React.FC<Props> = ({ content }) => (
         //     </CMSLink>
         //   );
 
-        // case 'upload': {
-        //   return <RichTextUpload key={i} node={node} />;
-        // }
+        case 'upload': {
+          return <RichTextUpload className="mb-4" key={i} node={node} />;
+        }
 
         // case 'label':
         //   return (

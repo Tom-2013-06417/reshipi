@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import qs from 'qs';
 import { Footer } from '../components/Footer/Footer';
 import { RecipeComponent } from '../components/Recipe/Recipe';
-import { Article, Ingredient, User } from '../generated/payload-types';
+import { Article, User } from '../generated/payload-types';
 import { CMS_API } from '../config';
 import { RichText } from '../components/RichText/RichText';
 import { Node } from '../components/RichText/types';
@@ -44,43 +44,7 @@ export const getStaticProps: GetStaticProps<Props> = async context => {
   const articleResponse = await fetch(`${CMS_API}/articles${stringifiedQuery}`);
   const [article]: [Article] = (await articleResponse.json()).docs;
 
-  const ingredientsLimit = 100;
-  const ingredientsQueryParams = `?limit=${ingredientsLimit}`;
-  const ingredientsResponse = await fetch(
-    `${CMS_API}/ingredients${ingredientsQueryParams}`,
-  );
-  const ingredients: Ingredient[] = (await ingredientsResponse.json()).docs;
-
-  const ingredientsMap: { [ingredientHash: string]: string } =
-    ingredients.reduce(
-      (result, ingredient) => ({ ...result, [ingredient.id]: ingredient.name }),
-      {},
-    );
-
-  // For now, we need to populate the values of the article's ingredients with
-  // the ingredient names from the ingredients endpoint because
-  // setting a depth on the articles API doesn't work natively yet to populate
-  // array-type nested relationships
-  const enrichedRecipe =
-    article.recipe && typeof article.recipe !== 'string'
-      ? {
-          ...article.recipe,
-          ingredients: article.recipe.ingredients.map(ingredientObject => ({
-            ...ingredientObject,
-            ingredient:
-              typeof ingredientObject.ingredient === 'string'
-                ? ingredientsMap[ingredientObject.ingredient]
-                : ingredientObject.ingredient,
-          })),
-        }
-      : undefined;
-
-  const enrichedArticle = {
-    ...article,
-    recipe: enrichedRecipe,
-  };
-
-  return { props: { article: enrichedArticle } };
+  return { props: { article } };
 };
 
 export default function ArticlePage({
