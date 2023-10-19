@@ -2,6 +2,6 @@ module.exports = {
   reactStrictMode: true,
   images: {
     minimumCacheTTL: 6000,
-    domains: ['localhost', 'reshipi.app'],
+    domains: ['localhost', 'reshipi.app', 'admin.reshipi.app'],
   },
 };
