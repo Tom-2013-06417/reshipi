@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import NextImage from 'next/image';
 import { Props } from './types';
-import { CMS_URL } from '../../config';
+import { MEDIA_URL } from '../../config';
 
 export const Image: React.FC<Props> = props => {
   const {
@@ -27,7 +27,7 @@ export const Image: React.FC<Props> = props => {
   if (!src && resource && typeof resource !== 'string') {
     alt = resource.alt;
     height = resource.height;
-    src = `${CMS_URL}/media/${resource.filename}`;
+    src = `${MEDIA_URL}/${resource.filename}`;
     width = resource.width;
   }
 
