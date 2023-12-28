@@ -58,8 +58,6 @@ export default function Home({
 
         <div className="flex flex-col">{cards}</div>
       </main>
-
-      <Footer />
     </>
   );
 }

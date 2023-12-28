@@ -91,8 +91,6 @@ export default function ArticlePage({
           <RecipeComponent className="mb-20" recipe={article.recipe} />
         </div>
       </main>
-
-      <Footer />
     </Fragment>
   );
 }

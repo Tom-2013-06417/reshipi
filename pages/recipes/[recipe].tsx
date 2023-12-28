@@ -68,8 +68,6 @@ export default function RecipePage({
           <RecipeComponent recipe={recipe} />
         </div>
       </main>
-
-      <Footer />
     </Fragment>
   );
 }

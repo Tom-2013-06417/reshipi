@@ -24,7 +24,7 @@ export const RecipeComponent: React.FC<Props> = ({ recipe, className }) => {
         return (
           <div
             key={i}
-            className="flex items-center mb-3 text-lg font-normal leading-8"
+            className="flex items-center mb-4 text-lg font-normal leading-8"
           >
             <input className="mr-3 w-4 h-4" type="checkbox" />
             {ingredient.amount} {ingredient.unit} {ingredientName}
@@ -39,7 +39,7 @@ export const RecipeComponent: React.FC<Props> = ({ recipe, className }) => {
   );
 
   const stepsHtml = recipe.steps.map((step, index) => (
-    <p key={index} className="mb-3">
+    <p key={index} className="mb-4">
       {step.step}
     </p>
   ));
