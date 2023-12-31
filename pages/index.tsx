@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
-import { Footer } from '../components/Footer/Footer';
+import { motion } from "framer-motion";
 import { Card } from '../components/Card/Card';
 import { Article } from '../generated/payload-types';
 import { CMS_API } from '../config';
@@ -31,12 +31,18 @@ export default function Home({
     }
 
     return (
-      <Card
+      <motion.div
         key={article.id}
-        heading={article.title}
-        body={''}
-        link={article.seo_url}
-      />
+        whileHover={{ scale: 1.01 }}
+        transition={{ ease: 'easeOut', duration: 0.1 }}
+      >
+        <Card
+          heading={article.title}
+          body={''}
+          link={article.seo_url}
+          thumbnail={article.seo_thumbnail}
+        />
+      </motion.div>
     );
   });
 
@@ -50,13 +56,20 @@ export default function Home({
 
       <main className="container max-w-screen-md mx-auto px-4 min-h-screen">
         <div className="min-h-[45vh]"></div>
-        <h1 className="text-6xl mb-20 text-center font-light">
-          <Link className="font-sans" href="/">
-            reshipi
-          </Link>
-        </h1>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileHover={{ scale: 1.05 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h1 className="text-6xl mb-20 text-center font-light">
+            <Link className="font-sans font-bold" href="/">
+              reshipi
+            </Link>
+          </h1>
+        </motion.div>
 
-        <div className="flex flex-col">{cards}</div>
+        <div className="flex flex-col mb-10">{cards}</div>
       </main>
     </>
   );

@@ -20,6 +20,7 @@ export interface Article {
   id: string;
   title: string;
   seo_url: string;
+  seo_thumbnail?: string;
   author: string | User;
   content: {
     [k: string]: unknown;
