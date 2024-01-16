@@ -1,8 +1,15 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
+import { AnimatePresence } from 'framer-motion';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+export default function MyApp({ Component, pageProps, router }: AppProps) {
+  return (
+    <AnimatePresence
+      mode="wait"
+    >
+      <Component {...pageProps} key={router.asPath} />
+    </AnimatePresence>
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for

@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Fragment } from 'react';
 import qs from 'qs';
-import { Footer } from '../components/Footer/Footer';
 import { RecipeComponent } from '../components/Recipe/Recipe';
 import { Article, User } from '../generated/payload-types';
 import { CMS_API } from '../config';
 import { RichText } from '../components/RichText/RichText';
 import { Node } from '../components/RichText/types';
+import { AnimatedLayout } from '../components/Layout/AnimatedLayout';
 
 interface Props {
   article: Article;
@@ -72,7 +71,7 @@ export default function ArticlePage({
   );
 
   return (
-    <Fragment>
+    <AnimatedLayout>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -91,6 +90,6 @@ export default function ArticlePage({
           <RecipeComponent className="mb-20" recipe={article.recipe} />
         </div>
       </main>
-    </Fragment>
+    </AnimatedLayout>
   );
 }

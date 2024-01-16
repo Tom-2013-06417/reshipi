@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { Fragment } from 'react';
 import qs from 'qs';
-import { Footer } from '../../components/Footer/Footer';
 import { RecipeComponent } from '../../components/Recipe/Recipe';
 import { Recipe } from '../../generated/payload-types';
 import { CMS_API } from '../../config';
