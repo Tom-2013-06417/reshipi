@@ -61,6 +61,8 @@ export default function ArticlePage({
   const isUser = (user: string | User): user is User =>
     typeof user !== 'string';
 
+  const title = `${article.title} | ${app.title}`;
+
   const author = isUser(article.author) ? (
     <div className="mb-4 text-lg font-normal leading-8">
       {article.author.firstName} {article.author.lastName}
@@ -72,9 +74,7 @@ export default function ArticlePage({
   return (
     <Fragment>
       <Head>
-        <title>
-          {article?.title} | {app.title}
-        </title>
+        <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
