@@ -1,14 +1,14 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatedLayout } from '../components/Layout/AnimatedLayout';
 
-export default function MyApp({ Component, pageProps, router }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AnimatePresence
-      mode="wait"
-    >
-      <Component {...pageProps} key={router.asPath} />
-    </AnimatePresence>
+    <div className="overflow-hidden">
+      <AnimatedLayout>
+        <Component {...pageProps} />
+      </AnimatedLayout>
+    </div>
   );
 }
 

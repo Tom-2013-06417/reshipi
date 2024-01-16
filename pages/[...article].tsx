@@ -6,7 +6,6 @@ import { Article, User } from '../generated/payload-types';
 import { CMS_API } from '../config';
 import { RichText } from '../components/RichText/RichText';
 import { Node } from '../components/RichText/types';
-import { AnimatedLayout } from '../components/Layout/AnimatedLayout';
 
 interface Props {
   article: Article;
@@ -71,13 +70,13 @@ export default function ArticlePage({
   );
 
   return (
-    <AnimatedLayout>
+    <>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container max-w-screen-md mx-auto px-4 font-thin min-h-screen">
+      <main className="container max-w-screen-md mx-auto px-4 font-thin min-h-screen overflow-hidden">
         <div className="min-h-[45vh]"></div>
         <h1 className="my-4">{article.title}</h1>
         {author}
@@ -90,6 +89,6 @@ export default function ArticlePage({
           <RecipeComponent className="mb-20" recipe={article.recipe} />
         </div>
       </main>
-    </AnimatedLayout>
+    </>
   );
 }
