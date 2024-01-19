@@ -2,6 +2,13 @@ module.exports = {
   reactStrictMode: true,
   images: {
     minimumCacheTTL: 6000,
-    domains: ['storage.googleapis.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };

@@ -1,3 +1,5 @@
+'use client';
+
 import NextImage, { StaticImageData } from 'next/image';
 import { Fragment, useState } from 'react';
 import type { ElementType, Ref } from 'react';
