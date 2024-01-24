@@ -9,6 +9,7 @@
     "start:dev": "next dev -p 3001"
   },
   "dependencies": {
+    "@next/third-parties": "^14.1.0",
     "escape-html": "^1.0.3",
     "framer-motion": "^10.16.16",
     "next": "^14.0.4",
