@@ -5,7 +5,7 @@ import Home from '../components/Home/Home';
 
 export const metadata: Metadata = {
   title: 'Reshipi',
-  description: 'A simpler recipe app'
+  description: 'Just another recipe website, but simpler. No frills.'
 }
 
 async function getArticles(): Promise<Article[]> {
