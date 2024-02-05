@@ -7,6 +7,7 @@ import { Card } from '../Card/Card';
 import { Article } from '../../generated/payload-types';
 import { CMS_API } from '../../config';
 import { AnimatedLayout } from '../Layout/AnimatedLayout';
+import LogoComponent from '../../assets/icons/Logo';
 
 interface Props {
   readonly articles: Article[];
@@ -46,10 +47,14 @@ export default function Home({ articles }: Props) {
       <main className="container max-w-screen-md mx-auto px-4 min-h-screen overflow-hidden">
         <div className="min-h-[45vh]"></div>
         <motion.div
+          className="flex flex-col lg:flex-row items-center mb-20 lg:justify-center"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-6xl mb-20 text-center font-light">
+          <div className="w-24 h-24 mr-2">
+            <LogoComponent />
+          </div>
+          <h1 className="text-6xl text-center font-light">
             <Link className="font-sans font-bold" href="/">
               reshipi
             </Link>
