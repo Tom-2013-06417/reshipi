@@ -46,19 +46,18 @@ export default function Home({ articles }: Props) {
     <AnimatedLayout>
       <main className="container max-w-screen-md mx-auto px-4 min-h-screen overflow-hidden">
         <div className="min-h-[45vh]"></div>
-        <motion.div
-          className="flex flex-col lg:flex-row items-center mb-20 lg:justify-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="w-24 h-24 mr-2">
-            <LogoComponent />
-          </div>
-          <h1 className="text-6xl text-center font-light">
-            <Link className="font-sans font-bold" href="/">
+        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+          <Link
+            className="flex flex-col lg:flex-row items-center mb-20 lg:justify-center"
+            href="/"
+          >
+            <div className="w-24 h-24 mr-2">
+              <LogoComponent />
+            </div>
+            <h1 className="font-sans font-bold text-6xl text-center">
               reshipi
-            </Link>
-          </h1>
+            </h1>
+          </Link>
         </motion.div>
 
         <div className="flex flex-col mb-10">{cards}</div>
